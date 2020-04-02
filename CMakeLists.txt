@@ -50,3 +50,9 @@ configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/config.h)
 
 # Finally, go into the subdirs
 add_subdirectory(src)
+
+if (BUILD_TESTING)
+	add_subdirectory(lib/Catch2)
+	target_link_libraries(tests Catch2::Catch2)
+	#add_subdirectory(tests)
+endif()
