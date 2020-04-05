@@ -1,6 +1,8 @@
 // src/liboping.hpp
 // (c) 2020 Korbinian Brandler. All rights reserved.
 
+#pragma once
+
 #include <memory>
 #include <netdb.h>
 #include <string>
@@ -18,7 +20,7 @@ namespace oping
 		int	   ttl;
 		int	   addrfamily;
 
-		std::unique_ptr<sockaddr> srcaddr;
+		std::shared_ptr<sockaddr> srcaddr;
 		socklen_t				  srcaddrlen;
 
 		std::string			  errmsg;

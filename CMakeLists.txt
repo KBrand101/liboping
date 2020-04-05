@@ -53,6 +53,5 @@ add_subdirectory(src)
 
 if (BUILD_TESTING)
 	add_subdirectory(lib/Catch2)
-	target_link_libraries(tests Catch2::Catch2)
-	#add_subdirectory(tests)
+	add_subdirectory(tests)
 endif()
