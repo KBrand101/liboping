@@ -23,7 +23,7 @@ namespace oping
 			obj->errmsg = function + ": " + msg;
 		}
 
-		const int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam)
+		int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam)
 		{
 			assert(obj != nullptr);
 			assert(addrfam == AF_INET || addrfam == AF_INET6);
@@ -56,12 +56,17 @@ namespace oping
 				assert(obj->srcaddrlen <= sizeof(sockaddr_storage));
 
 				if (bind(fd, obj->srcaddr.get(), obj->srcaddrlen) == -1)
+				{
+					setErrorMsg(obj, "openSocket", "Failed to bind socket");
 					return -1;
+				}
 			}
 
 			if (addrfam == AF_INET)
 				setsockopt(fd, IPPROTO_IP, IP_RECVTTL, new int, sizeof(int));
 
+			if (fd == -1)
+				setErrorMsg(obj, "openSocket", "Failed to create socket");
 			return fd;
 		}
 	}	// namespace internal

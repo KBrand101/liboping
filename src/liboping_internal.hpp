@@ -25,7 +25,7 @@ namespace oping
 		 * @param addrfam The ip address family to use (ipv4 or ipv6)
 		 * @return file descriptor for new socket
 		 */
-		const int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam);
+		int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam);
 
 	}	// namespace internal
 
