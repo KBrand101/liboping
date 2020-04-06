@@ -77,4 +77,10 @@ namespace oping
 
 	}	// void addHost
 
+	std::string getError(std::shared_ptr<pingobj> obj)
+	{
+		assert(obj != nullptr);
+		return obj->errmsg;
+	}
+
 }	// namespace oping

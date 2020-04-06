@@ -27,3 +27,12 @@ TEST_CASE("check oping::internal::openSocket()")
 	INFO(obj->errmsg);
 	REQUIRE(i_1 == 3);
 }
+
+TEST_CASE("check oping::getError()")
+{
+	using namespace std;
+	shared_ptr<oping::pingobj> obj = make_shared<oping::pingobj>(oping::pingobj{});
+
+	oping::internal::setErrorMsg(obj, "foo", "msg");
+	REQUIRE(oping::getError(obj) == "foo: msg");
+}

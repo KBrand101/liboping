@@ -27,11 +27,11 @@ namespace oping
 		std::vector<pinghost> table;
 	};	 // pingobj
 
-	void addHost(std::shared_ptr<pingobj> obj, const std::string &host);
-	void removeHost(std::shared_ptr<pingobj> obj, const std::string &host);
-	void setOption();
-	void getCount();
-	void sendPing(std::shared_ptr<pingobj> obj);
-	void getError();
+	void		addHost(std::shared_ptr<pingobj> obj, const std::string &host);
+	void		removeHost(std::shared_ptr<pingobj> obj, const std::string &host);
+	void		setOption();
+	void		getCount();
+	void		sendPing(std::shared_ptr<pingobj> obj);
+	std::string getError(std::shared_ptr<pingobj> obj);
 
 }	// namespace oping
