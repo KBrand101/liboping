@@ -7,6 +7,23 @@
 
 namespace oping
 {
+	struct pinghost
+	{
+	};	 // pinghost
+
+	struct pingobj
+	{
+		double timeout;
+		int	   ttl;
+		int	   addrfamily;
+
+		std::shared_ptr<sockaddr> srcaddr;
+		socklen_t				  srcaddrlen;
+
+		std::string			  errmsg;
+		std::vector<pinghost> table;
+	};	 // pingobj
+
 	namespace internal
 	{
 		/**
