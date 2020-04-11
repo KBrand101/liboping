@@ -18,7 +18,8 @@ namespace oping
 		QOS,   // Qualtiy of Service
 		TIMEOUT,
 		TTL,   // Time to Live
-		AF	   // Address Family
+		AF,	   // Address Family
+		COUNT
 	};
 
 	std::shared_ptr<pingobj> construct();
