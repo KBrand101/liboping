@@ -27,6 +27,32 @@ TEST_CASE("check oping::internal::openSocket()")
 	REQUIRE(fd_ip6 == 4);
 }
 
+TEST_CASE("check oping::internal::setTTL()")
+{
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
+
+	int ttl_set = oping::internal::setTTL(obj, 50);
+	INFO(obj->errmsg);
+	REQUIRE(obj->ttl == 50);
+	REQUIRE(ttl_set == 0);
+
+	int ttl_min = oping::internal::setTTL(obj, 1);
+	INFO(obj->errmsg);
+	REQUIRE(ttl_min == 0);
+
+	int ttl_max = oping::internal::setTTL(obj, 255);
+	INFO(obj->errmsg);
+	REQUIRE(ttl_min == 0);
+
+	int ttl_to_small = oping::internal::setTTL(obj, 0);
+	INFO(obj->errmsg);
+	REQUIRE(ttl_to_small == -1);
+
+	int ttl_to_big = oping::internal::setTTL(obj, 256);
+	INFO(obj->errmsg);
+	REQUIRE(ttl_to_big == -1);
+}
+
 TEST_CASE("check oping::internal::setAF()")
 {
 	std::shared_ptr<oping::pingobj> obj = oping::construct();

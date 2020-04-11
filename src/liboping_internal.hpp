@@ -52,7 +52,15 @@ namespace oping
 
 		int setTimeout(std::shared_ptr<pingobj> obj);
 
-		int setTTL(std::shared_ptr<pingobj> obj);
+		/**
+		 * Set ttl of pingobj to given ttl
+		 * 
+		 * @param obj Pointer to current pingobj
+		 * @param ttl The ttl to set
+		 * @return 0 if everything is ok
+		 * @return -1 if an error occurs (see oping::getError() for details)
+		 */
+		int setTTL(std::shared_ptr<pingobj> obj, const int &ttl);
 
 		/**
 		 * Set addrfamily of pingobj to given addrfam

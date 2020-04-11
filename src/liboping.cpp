@@ -68,9 +68,38 @@ namespace oping
 			assert(obj != nullptr);
 		}	// int setTimeout
 
-		int setTTL(std::shared_ptr<pingobj> obj)
+		int setTTL(std::shared_ptr<pingobj> obj, const int &ttl)
 		{
 			assert(obj != nullptr);
+
+			if (ttl < 1 || ttl > 255)
+			{
+				obj->ttl = DEFAULT_TTL;
+				setErrorMsg(obj, "setTTL", "Given TTL is out of range");
+				return -1;
+			}
+
+			obj->ttl = ttl;
+
+			if (obj->fd4 != -1)
+			{
+				if (setsockopt(obj->fd4, IPPROTO_IP, IP_TTL, &ttl, sizeof(ttl)))
+				{
+					setErrorMsg(obj, "setTTL", "Failed to set TTL (" + std::to_string(ttl) + " given)");
+					return -1;
+				}
+			}
+
+			if (obj->fd6 != -1)
+			{
+				if (setsockopt(obj->fd6, IPPROTO_IPV6, IPV6_UNICAST_HOPS, &ttl, sizeof(ttl)))
+				{
+					setErrorMsg(obj, "setTTL", "Failed to set TTL" + std::to_string(ttl) + " given)");
+					return -1;
+				}
+			}
+
+			return 0;
 		}	// int setTTL
 
 		int setAF(std::shared_ptr<pingobj> obj, const int &addrfam)
