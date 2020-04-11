@@ -21,7 +21,7 @@ namespace oping
 			assert(msg.length() > 0);
 
 			obj->errmsg = function + ": " + msg;
-		}
+		}	// void setErrorMsg
 
 		int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam)
 		{
@@ -68,7 +68,28 @@ namespace oping
 			if (fd == -1)
 				setErrorMsg(obj, "openSocket", "Failed to create socket");
 			return fd;
-		}
+		}	// int openSocket
+
+		int setQos(std::shared_ptr<pingobj> obj)
+		{
+			assert(obj != nullptr);
+		}	// int setQos
+
+		int setTimeout(std::shared_ptr<pingobj> obj)
+		{
+			assert(obj != nullptr);
+		}	// int setTimeout
+
+		int setTTL(std::shared_ptr<pingobj> obj)
+		{
+			assert(obj != nullptr);
+		}	// int setTTL
+
+		int setAF(std::shared_ptr<pingobj> obj)
+		{
+			assert(obj != nullptr);
+		}	// int setAF
+
 	}	// namespace internal
 
 	void addHost(std::shared_ptr<pingobj> obj, const std::string &host)
@@ -76,6 +97,26 @@ namespace oping
 		assert(obj != nullptr);
 
 	}	// void addHost
+
+	int setOption(std::shared_ptr<pingobj> obj, const Option &opt)
+	{
+		assert(obj != nullptr);
+
+		switch (opt)
+		{
+			case QOS:
+				break;
+			case TIMEOUT:
+				break;
+			case TTL:
+				break;
+			case AF:
+				break;
+			default:
+				internal::setErrorMsg(obj, "setOption", "Unknown option");
+				return -1;
+		}
+	}	// void setOption
 
 	std::string getError(std::shared_ptr<pingobj> obj)
 	{

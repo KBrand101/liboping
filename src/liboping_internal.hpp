@@ -44,6 +44,14 @@ namespace oping
 		 */
 		int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam);
 
+		int setQos(std::shared_ptr<pingobj> obj);
+
+		int setTimeout(std::shared_ptr<pingobj> obj);
+
+		int setTTL(std::shared_ptr<pingobj> obj);
+
+		int setAF(std::shared_ptr<pingobj> obj);
+
 	}	// namespace internal
 
 }	// namespace oping
