@@ -17,6 +17,7 @@ namespace oping
 
 	struct pingobj
 	{
+		uint   qos;
 		double timeout;
 		int	   ttl;
 		int	   addrfamily;
@@ -48,7 +49,15 @@ namespace oping
 		 */
 		int openSocket(std::shared_ptr<pingobj> obj, const int &addrfam);
 
-		int setQos(std::shared_ptr<pingobj> obj);
+		/**
+		 * Set qos of pingobj to given qos
+		 * 
+		 * @param obj Pointer to current pingobj
+		 * @param ttl The qos to set. See netinet/ip.h for details/values
+		 * @return 0 if everything is ok
+		 * @return -1 if an error occurs (see oping::getError() for details)
+		 */
+		int setQos(std::shared_ptr<pingobj> obj, const uint8_t &qos);
 
 		int setTimeout(std::shared_ptr<pingobj> obj);
 

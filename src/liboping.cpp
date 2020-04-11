@@ -58,9 +58,31 @@ namespace oping
 			return fd;
 		}	// int openSocket
 
-		int setQos(std::shared_ptr<pingobj> obj)
+		int setQos(std::shared_ptr<pingobj> obj, const uint8_t &qos)
 		{
 			assert(obj != nullptr);
+
+			obj->qos = qos;
+
+			if (obj->fd4 != -1)
+			{
+				if (setsockopt(obj->fd4, IPPROTO_IP, IP_TOS, &qos, sizeof(qos)))
+				{
+					setErrorMsg(obj, "setQos", "Failed to set Qos (" + std::to_string(qos) + " given)");
+					return -1;
+				}
+			}
+
+			if (obj->fd6 != -1)
+			{
+				if (setsockopt(obj->fd6, IPPROTO_IPV6, IPV6_TCLASS, &qos, sizeof(qos)))
+				{
+					setErrorMsg(obj, "setQos", "Failed to set Qos" + std::to_string(qos) + " given)");
+					return -1;
+				}
+			}
+
+			return 0;
 		}	// int setQos
 
 		int setTimeout(std::shared_ptr<pingobj> obj)

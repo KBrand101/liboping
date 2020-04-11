@@ -4,6 +4,8 @@
 #define CATCH_CONFIG_MAIN
 #include "../lib/Catch2/single_include/catch2/catch.hpp"
 
+#include <netinet/ip.h>
+
 #include "../src/liboping_internal.hpp"
 
 TEST_CASE("check oping::internal::setErrorMsg()")
@@ -25,6 +27,16 @@ TEST_CASE("check oping::internal::openSocket()")
 	int fd_ip6 = oping::internal::openSocket(obj, AF_INET6);
 	INFO(obj->errmsg);
 	REQUIRE(fd_ip6 == 4);
+}
+
+TEST_CASE("check oping::internal::setQos()")
+{
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
+
+	int qos = oping::internal::setQos(obj, IPTOS_LOWDELAY);
+	INFO(obj->errmsg);
+	REQUIRE(obj->qos == IPTOS_LOWDELAY);
+	REQUIRE(qos == 0);
 }
 
 TEST_CASE("check oping::internal::setTTL()")
