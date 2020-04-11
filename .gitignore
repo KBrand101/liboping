@@ -5,3 +5,6 @@
 
 # VSCode directory
 /.vscode*/
+
+# Documentation (created by doxygen)
+/docs/
