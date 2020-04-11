@@ -14,7 +14,7 @@ TEST_CASE("check oping::internal::setErrorMsg()")
 
 	oping::internal::setErrorMsg(obj, "foo", "msg");
 	REQUIRE(obj->errmsg == "foo: msg");
-}
+}	// oping::internal::setErrorMsg
 
 TEST_CASE("check oping::internal::openSocket()")
 {
@@ -27,7 +27,7 @@ TEST_CASE("check oping::internal::openSocket()")
 	int fd_ip6 = oping::internal::openSocket(obj, AF_INET6);
 	INFO(obj->errmsg);
 	REQUIRE(fd_ip6 == 4);
-}
+}	// oping::internal::openSocket
 
 TEST_CASE("check oping::internal::setQos()")
 {
@@ -37,7 +37,7 @@ TEST_CASE("check oping::internal::setQos()")
 	INFO(obj->errmsg);
 	REQUIRE(obj->qos == IPTOS_LOWDELAY);
 	REQUIRE(qos == 0);
-}
+}	// oping::internal::setQos
 
 TEST_CASE("check oping::internal::setTimeout()")
 {
@@ -52,7 +52,7 @@ TEST_CASE("check oping::internal::setTimeout()")
 	INFO(obj->errmsg);
 	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
 	REQUIRE(timeout_below_zero == -1);
-}
+}	// oping::internal::setTimeout
 
 TEST_CASE("check oping::internal::setTTL()")
 {
@@ -78,7 +78,7 @@ TEST_CASE("check oping::internal::setTTL()")
 	int ttl_to_big = oping::internal::setTTL(obj, 256);
 	INFO(obj->errmsg);
 	REQUIRE(ttl_to_big == -1);
-}
+}	// oping::internal::setTTL
 
 TEST_CASE("check oping::internal::setAF()")
 {
@@ -99,7 +99,7 @@ TEST_CASE("check oping::internal::setAF()")
 	int result_af_apple = oping::internal::setAF(obj, AF_APPLETALK);
 	INFO(obj->errmsg);
 	REQUIRE(result_af_apple == -1);
-}
+}	// oping::internal::setAF
 
 TEST_CASE("check oping::construct()")
 {
@@ -112,7 +112,7 @@ TEST_CASE("check oping::construct()")
 	REQUIRE(obj->fd6 == -1);
 	REQUIRE(obj->errmsg == "");
 	REQUIRE(obj->table.empty());
-}
+}	// oping::construct
 
 TEST_CASE("check oping::getError()")
 {
@@ -120,4 +120,4 @@ TEST_CASE("check oping::getError()")
 
 	oping::internal::setErrorMsg(obj, "foo", "msg");
 	REQUIRE(oping::getError(obj) == "foo: msg");
-}
+}	// oping::getError
