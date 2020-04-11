@@ -53,7 +53,7 @@ namespace oping
 		 * Set qos of pingobj to given qos
 		 * 
 		 * @param obj Pointer to current pingobj
-		 * @param ttl The qos to set. See netinet/ip.h for details/values
+		 * @param qos The qos to set. See netinet/ip.h for details/values
 		 * @return 0 if everything is ok
 		 * @return -1 if an error occurs (see oping::getError() for details)
 		 */
