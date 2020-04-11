@@ -36,8 +36,15 @@ namespace oping
 	 */
 	int setOption(std::shared_ptr<pingobj> obj, const Option &opt, const double &value);
 
-	void		getCount();
-	int			sendPing(std::shared_ptr<pingobj> obj);
+	void getCount();
+	int	 sendPing(std::shared_ptr<pingobj> obj);
+
+	/**
+	 * Get latest error message
+	 * 
+	 * @param obj Pointer to current pingobj
+	 * @return the latest error message
+	 */
 	std::string getError(std::shared_ptr<pingobj> obj);
 
 }	// namespace oping
