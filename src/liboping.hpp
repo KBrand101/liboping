@@ -26,7 +26,7 @@ namespace oping
 	void					 removeHost(std::shared_ptr<pingobj> obj, const std::string &host);
 
 	/**
-	 * Set option to value
+	 * Set given option to given value
 	 * 
 	 * @param obj Pointer to current pingobj
 	 * @param opt See enum Option
