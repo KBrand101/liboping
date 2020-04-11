@@ -73,9 +73,19 @@ namespace oping
 			assert(obj != nullptr);
 		}	// int setTTL
 
-		int setAF(std::shared_ptr<pingobj> obj)
+		int setAF(std::shared_ptr<pingobj> obj, const int &addrfam)
 		{
 			assert(obj != nullptr);
+
+			if ((addrfam != AF_UNSPEC) && (addrfam != AF_INET) && (addrfam != AF_INET6))
+			{
+				obj->addrfamily = DEFAULT_AF;
+				setErrorMsg(obj, "setAF", "Invalid address family" + addrfam);
+				return -1;
+			}
+
+			obj->addrfamily = addrfam;
+			return 0;
 		}	// int setAF
 
 	}	// namespace internal

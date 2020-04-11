@@ -51,7 +51,15 @@ namespace oping
 
 		int setTTL(std::shared_ptr<pingobj> obj);
 
-		int setAF(std::shared_ptr<pingobj> obj);
+		/**
+		 * Set addrfamily of pingobj to given addrfam
+		 * 
+		 * @param obj Pointer to current pingobj
+		 * @param addrfam The ip address family to use (e.g. unspecified, ipv4 or ipv6)
+		 * @return 0 if everything is ok
+		 * @return -1 if addrfam is not AF_UNSPEC, AF_INET or AF_INET6
+		 */
+		int setAF(std::shared_ptr<pingobj> obj, const int &addrfam);
 
 	}	// namespace internal
 
