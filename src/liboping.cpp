@@ -154,6 +154,7 @@ namespace oping
 	std::shared_ptr<pingobj> construct()
 	{
 		pingobj obj;
+		obj.qos		   = -1;
 		obj.timeout	   = DEFAULT_TIMEOUT;
 		obj.ttl		   = DEFAULT_TTL;
 		obj.addrfamily = DEFAULT_AF;
