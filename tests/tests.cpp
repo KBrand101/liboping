@@ -8,20 +8,15 @@
 
 TEST_CASE("check oping::internal::setErrorMsg()")
 {
-	using namespace std;
-	shared_ptr<oping::pingobj> obj = make_shared<oping::pingobj>(oping::pingobj{});
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
 
 	oping::internal::setErrorMsg(obj, "foo", "msg");
 	REQUIRE(obj->errmsg == "foo: msg");
-
-	oping::internal::setErrorMsg(obj, "baz", "msg");
-	REQUIRE(obj->errmsg == "baz: msg");
 }
 
 TEST_CASE("check oping::internal::openSocket()")
 {
-	using namespace std;
-	shared_ptr<oping::pingobj> obj = make_shared<oping::pingobj>(oping::pingobj{});
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
 
 	int fd_ip4 = oping::internal::openSocket(obj, AF_INET);
 	INFO(obj->errmsg);
@@ -34,8 +29,7 @@ TEST_CASE("check oping::internal::openSocket()")
 
 TEST_CASE("check oping::construct()")
 {
-	using namespace std;
-	shared_ptr<oping::pingobj> obj = oping::construct();
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
 	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
 	REQUIRE(obj->ttl == DEFAULT_TTL);
 	REQUIRE(obj->addrfamily == DEFAULT_AF);
@@ -47,8 +41,7 @@ TEST_CASE("check oping::construct()")
 
 TEST_CASE("check oping::getError()")
 {
-	using namespace std;
-	shared_ptr<oping::pingobj> obj = make_shared<oping::pingobj>(oping::pingobj{});
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
 
 	oping::internal::setErrorMsg(obj, "foo", "msg");
 	REQUIRE(oping::getError(obj) == "foo: msg");
