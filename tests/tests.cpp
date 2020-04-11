@@ -23,9 +23,13 @@ TEST_CASE("check oping::internal::openSocket()")
 	using namespace std;
 	shared_ptr<oping::pingobj> obj = make_shared<oping::pingobj>(oping::pingobj{});
 
-	int i_1 = oping::internal::openSocket(obj, AF_INET);
+	int fd_ip4 = oping::internal::openSocket(obj, AF_INET);
 	INFO(obj->errmsg);
-	REQUIRE(i_1 == 3);
+	REQUIRE(fd_ip4 == 3);
+
+	int fd_ip6 = oping::internal::openSocket(obj, AF_INET6);
+	INFO(obj->errmsg);
+	REQUIRE(fd_ip6 == 4);
 }
 
 TEST_CASE("check oping::getError()")
