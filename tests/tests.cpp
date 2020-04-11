@@ -39,6 +39,21 @@ TEST_CASE("check oping::internal::setQos()")
 	REQUIRE(qos == 0);
 }
 
+TEST_CASE("check oping::internal::setTimeout()")
+{
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
+
+	int timeout_zero = oping::internal::setTimeout(obj, 0.0);
+	INFO(obj->errmsg);
+	REQUIRE(obj->timeout == 0.0);
+	REQUIRE(timeout_zero == 0);
+
+	int timeout_below_zero = oping::internal::setTimeout(obj, -1.0);
+	INFO(obj->errmsg);
+	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
+	REQUIRE(timeout_below_zero == -1);
+}
+
 TEST_CASE("check oping::internal::setTTL()")
 {
 	std::shared_ptr<oping::pingobj> obj = oping::construct();

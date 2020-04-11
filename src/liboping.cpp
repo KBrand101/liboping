@@ -85,9 +85,19 @@ namespace oping
 			return 0;
 		}	// int setQos
 
-		int setTimeout(std::shared_ptr<pingobj> obj)
+		int setTimeout(std::shared_ptr<pingobj> obj, const double &timeout)
 		{
 			assert(obj != nullptr);
+
+			if (timeout < 0.0)
+			{
+				obj->timeout = DEFAULT_TIMEOUT;
+				setErrorMsg(obj, "setTimeout", "Given timeout is below zero: " + std::to_string(timeout));
+				return -1;
+			}
+
+			obj->timeout = timeout;
+			return 0;
 		}	// int setTimeout
 
 		int setTTL(std::shared_ptr<pingobj> obj, const int &ttl)

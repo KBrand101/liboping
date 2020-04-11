@@ -59,7 +59,15 @@ namespace oping
 		 */
 		int setQos(std::shared_ptr<pingobj> obj, const uint8_t &qos);
 
-		int setTimeout(std::shared_ptr<pingobj> obj);
+		/**
+		 * Set timeout of pingobj to given timeout
+		 * 
+		 * @param obj Pointer to current pingobj
+		 * @param timeout The timeout to set.
+		 * @return 0 if everything is ok
+		 * @return -1 if an error occurs (see oping::getError() for details)
+		 */
+		int setTimeout(std::shared_ptr<pingobj> obj, const double &timeout);
 
 		/**
 		 * Set ttl of pingobj to given ttl
