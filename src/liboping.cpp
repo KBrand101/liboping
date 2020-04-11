@@ -50,18 +50,6 @@ namespace oping
 				return -1;
 			}
 
-			if (obj->srcaddr != nullptr)
-			{
-				assert(obj->srcaddrlen > 0);
-				assert(obj->srcaddrlen <= sizeof(sockaddr_storage));
-
-				if (bind(fd, obj->srcaddr.get(), obj->srcaddrlen) == -1)
-				{
-					setErrorMsg(obj, "openSocket", "Failed to bind socket");
-					return -1;
-				}
-			}
-
 			if (addrfam == AF_INET)
 				setsockopt(fd, IPPROTO_IP, IP_RECVTTL, new int, sizeof(int));
 
@@ -98,8 +86,6 @@ namespace oping
 		obj.timeout	   = DEFAULT_TIMEOUT;
 		obj.ttl		   = DEFAULT_TTL;
 		obj.addrfamily = DEFAULT_AF;
-		obj.srcaddr	   = nullptr;
-		obj.srcaddrlen = -1;
 		obj.errmsg	   = "";
 		obj.table	   = std::vector<pinghost>(0);
 
