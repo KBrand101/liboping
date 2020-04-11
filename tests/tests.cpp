@@ -32,6 +32,19 @@ TEST_CASE("check oping::internal::openSocket()")
 	REQUIRE(fd_ip6 == 4);
 }
 
+TEST_CASE("check oping::construct()")
+{
+	using namespace std;
+	shared_ptr<oping::pingobj> obj = oping::construct();
+	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
+	REQUIRE(obj->ttl == DEFAULT_TTL);
+	REQUIRE(obj->addrfamily == DEFAULT_AF);
+	REQUIRE(obj->srcaddr == nullptr);
+	REQUIRE(obj->srcaddrlen == -1);
+	REQUIRE(obj->errmsg == "");
+	REQUIRE(obj->table.empty());
+}
+
 TEST_CASE("check oping::getError()")
 {
 	using namespace std;

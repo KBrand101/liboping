@@ -92,6 +92,20 @@ namespace oping
 
 	}	// namespace internal
 
+	std::shared_ptr<pingobj> construct()
+	{
+		pingobj obj;
+		obj.timeout	   = DEFAULT_TIMEOUT;
+		obj.ttl		   = DEFAULT_TTL;
+		obj.addrfamily = DEFAULT_AF;
+		obj.srcaddr	   = nullptr;
+		obj.srcaddrlen = -1;
+		obj.errmsg	   = "";
+		obj.table	   = std::vector<pinghost>(0);
+
+		return std::make_shared<pingobj>(obj);
+	}	// std::shared_ptr<pingobj> construct
+
 	void addHost(std::shared_ptr<pingobj> obj, const std::string &host)
 	{
 		assert(obj != nullptr);

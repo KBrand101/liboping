@@ -5,6 +5,10 @@
 
 #include "liboping.hpp"
 
+#define DEFAULT_TIMEOUT 1.0
+#define DEFAULT_TTL 255
+#define DEFAULT_AF AF_UNSPEC
+
 namespace oping
 {
 	struct pinghost
