@@ -21,6 +21,9 @@ namespace oping
 		int	   ttl;
 		int	   addrfamily;
 
+		int fd4;   // socket file descriptor for ipv4
+		int fd6;   // socket file descriptor for ipv6
+
 		std::string			  errmsg;
 		std::vector<pinghost> table;
 	};	 // pingobj

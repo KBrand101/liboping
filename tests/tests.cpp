@@ -54,6 +54,8 @@ TEST_CASE("check oping::construct()")
 	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
 	REQUIRE(obj->ttl == DEFAULT_TTL);
 	REQUIRE(obj->addrfamily == DEFAULT_AF);
+	REQUIRE(obj->fd4 == -1);
+	REQUIRE(obj->fd6 == -1);
 	REQUIRE(obj->errmsg == "");
 	REQUIRE(obj->table.empty());
 }

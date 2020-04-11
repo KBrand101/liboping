@@ -96,6 +96,8 @@ namespace oping
 		obj.timeout	   = DEFAULT_TIMEOUT;
 		obj.ttl		   = DEFAULT_TTL;
 		obj.addrfamily = DEFAULT_AF;
+		obj.fd4		   = -1;
+		obj.fd6		   = -1;
 		obj.errmsg	   = "";
 		obj.table	   = std::vector<pinghost>(0);
 
