@@ -132,6 +132,6 @@ namespace oping
 	{
 		assert(obj != nullptr);
 		return obj->errmsg;
-	}
+	}	// std::string getError
 
 }	// namespace oping
