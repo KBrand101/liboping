@@ -172,24 +172,30 @@ namespace oping
 
 	}	// void addHost
 
-	int setOption(std::shared_ptr<pingobj> obj, const Option &opt)
+	int setOption(std::shared_ptr<pingobj> obj, const Option &opt, const double &value)
 	{
 		assert(obj != nullptr);
 
 		switch (opt)
 		{
 			case QOS:
+				return internal::setQos(obj, value);
 				break;
 			case TIMEOUT:
+				return internal::setTimeout(obj, value);
 				break;
 			case TTL:
+				return internal::setTTL(obj, value);
 				break;
 			case AF:
+				return internal::setAF(obj, value);
 				break;
 			default:
 				internal::setErrorMsg(obj, "setOption", "Unknown option");
-				return -1;
+				return -2;
 		}
+
+		return 0;
 	}	// void setOption
 
 	std::string getError(std::shared_ptr<pingobj> obj)

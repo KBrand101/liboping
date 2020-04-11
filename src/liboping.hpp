@@ -24,9 +24,20 @@ namespace oping
 	std::shared_ptr<pingobj> construct();
 	void					 addHost(std::shared_ptr<pingobj> obj, const std::string &host);
 	void					 removeHost(std::shared_ptr<pingobj> obj, const std::string &host);
-	int						 setOption(std::shared_ptr<pingobj> obj, const Option &opt);
-	void					 getCount();
-	void					 sendPing(std::shared_ptr<pingobj> obj);
-	std::string				 getError(std::shared_ptr<pingobj> obj);
+
+	/**
+	 * Set option to value
+	 * 
+	 * @param obj Pointer to current pingobj
+	 * @param opt See enum Option
+	 * @param value The value to set the option to
+	 * @return 0 if everything is ok
+	 * @return -1 if an error occurs (see oping::getError() for details)
+	 */
+	int setOption(std::shared_ptr<pingobj> obj, const Option &opt, const double &value);
+
+	void		getCount();
+	int			sendPing(std::shared_ptr<pingobj> obj);
+	std::string getError(std::shared_ptr<pingobj> obj);
 
 }	// namespace oping

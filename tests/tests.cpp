@@ -114,6 +114,34 @@ TEST_CASE("check oping::construct()")
 	REQUIRE(obj->table.empty());
 }	// oping::construct
 
+TEST_CASE("check oping::setOption()")
+{
+	std::shared_ptr<oping::pingobj> obj = oping::construct();
+
+	int opt_qos = oping::setOption(obj, oping::Option::QOS, IPTOS_LOWDELAY);
+	REQUIRE(obj->qos == IPTOS_LOWDELAY);
+	REQUIRE(opt_qos == 0);
+
+	int opt_timeout = oping::setOption(obj, oping::Option::TIMEOUT, 1.0);
+	REQUIRE(obj->timeout == 1.0);
+	REQUIRE(opt_timeout == 0);
+
+	int opt_ttl = oping::setOption(obj, oping::Option::TTL, 50);
+	REQUIRE(obj->ttl == 50);
+	REQUIRE(opt_ttl == 0);
+
+	int opt_af_inet = oping::setOption(obj, oping::Option::AF, AF_INET);
+	REQUIRE(obj->addrfamily == AF_INET);
+	REQUIRE(opt_af_inet == 0);
+
+	int opt_af_appletalk = oping::setOption(obj, oping::Option::AF, AF_APPLETALK);
+	REQUIRE(obj->addrfamily == DEFAULT_AF);
+	REQUIRE(opt_af_appletalk == -1);
+
+	int opt_not_treated = oping::setOption(obj, oping::Option::COUNT, 0);
+	REQUIRE(opt_not_treated == -2);
+}	// oping::setOption
+
 TEST_CASE("check oping::getError()")
 {
 	std::shared_ptr<oping::pingobj> obj = oping::construct();
