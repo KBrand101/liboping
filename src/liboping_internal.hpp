@@ -16,6 +16,7 @@ namespace oping
 		sockaddr_storage *addr;
 		socklen_t		  addrlen;
 		int				  addrfamily;
+		timeval			  timer;
 	};	 // pinghost
 
 	struct pingobj
@@ -93,6 +94,8 @@ namespace oping
 		 * @return -1 if addrfam is not AF_UNSPEC, AF_INET or AF_INET6
 		 */
 		int setAF(std::shared_ptr<pingobj> obj, const int &addrfam);
+
+		int sendTo(std::shared_ptr<pingobj> obj, std::shared_ptr<pinghost> ph, const void *buf, const size_t &buflen, const int &fd);
 
 	}	// namespace internal
 

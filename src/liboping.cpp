@@ -5,7 +5,9 @@
 
 #include <cassert>
 #include <netinet/in.h>
+#include <string.h>
 #include <sys/socket.h>
+#include <sys/time.h>
 #include <unistd.h>
 
 namespace oping
@@ -159,6 +161,32 @@ namespace oping
 			obj->addrfamily = addrfam;
 			return 0;
 		}	// int setAF
+
+		int sendTo(std::shared_ptr<pingobj> obj, std::shared_ptr<pinghost> ph, const void *buf, const size_t &buflen, const int &fd)
+		{
+			if (gettimeofday(&ph->timer, nullptr) == -1)
+			{
+				setErrorMsg(obj, "sendTo", strerror(errno));
+				timerclear(&ph->timer);
+				return -1;
+			}
+
+			ssize_t result = sendto(fd, buf, buflen, 0, (sockaddr *) ph->addr, ph->addrlen);
+
+			if (result < 0)
+			{
+				switch (errno)
+				{
+					case EHOSTUNREACH:
+					case ENETUNREACH:
+						return 0;
+					default:
+						setErrorMsg(obj, "sendTo", strerror(errno));
+				}
+			}
+
+			return (int) result;
+		}	// int sendTo
 
 	}	// namespace internal
 
