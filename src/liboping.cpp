@@ -12,6 +12,17 @@ namespace oping
 {
 	namespace internal
 	{
+		std::shared_ptr<pinghost> construct_ph()
+		{
+			pinghost ph;
+
+			ph.addr		  = nullptr;
+			ph.addrlen	  = sizeof(sockaddr_storage);
+			ph.addrfamily = DEFAULT_AF;
+
+			return std::make_shared<pinghost>(ph);
+		}	// std::shared_ptr<pinghost> construct_ph
+
 		void setErrorMsg(std::shared_ptr<pingobj> obj, const std::string &function, const std::string &msg)
 		{
 			assert(obj != nullptr);

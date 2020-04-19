@@ -13,6 +13,9 @@ namespace oping
 {
 	struct pinghost
 	{
+		sockaddr_storage *addr;
+		socklen_t		  addrlen;
+		int				  addrfamily;
 	};	 // pinghost
 
 	struct pingobj
@@ -31,6 +34,8 @@ namespace oping
 
 	namespace internal
 	{
+		std::shared_ptr<pinghost> construct_ph();
+
 		/**
 		 * Set errmsg of pingobj to respective message
 		 * 

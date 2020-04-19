@@ -8,6 +8,14 @@
 
 #include "../src/liboping_internal.hpp"
 
+TEST_CASE("check oping::internal::construct_ph()")
+{
+	std::shared_ptr<oping::pinghost> ph = oping::internal::construct_ph();
+	REQUIRE(ph->addr == nullptr);
+	REQUIRE(ph->addrlen == sizeof(sockaddr_storage));
+	REQUIRE(ph->addrfamily == DEFAULT_AF);
+}	// oping::internal::construct_ph
+
 TEST_CASE("check oping::internal::setErrorMsg()")
 {
 	std::shared_ptr<oping::pingobj> obj = oping::construct();
