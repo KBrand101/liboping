@@ -10,7 +10,6 @@
 
 namespace oping
 {
-	struct pinghost;
 	struct pingobj;
 
 	enum Option
