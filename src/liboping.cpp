@@ -154,7 +154,7 @@ namespace oping
 			if ((addrfam != AF_UNSPEC) && (addrfam != AF_INET) && (addrfam != AF_INET6))
 			{
 				obj->addrfamily = DEFAULT_AF;
-				setErrorMsg(obj, "setAF", "Invalid address family" + addrfam);
+				setErrorMsg(obj, "setAF", "Invalid address family: " + addrfam);
 				return -1;
 			}
 
