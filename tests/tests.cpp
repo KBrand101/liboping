@@ -112,7 +112,7 @@ TEST_CASE("check oping::internal::setAF()")
 TEST_CASE("check oping::construct()")
 {
 	std::shared_ptr<oping::pingobj> obj = oping::construct();
-	REQUIRE(obj->qos == -1);
+	REQUIRE(obj->qos == (uint8_t) -1);
 	REQUIRE(obj->timeout == DEFAULT_TIMEOUT);
 	REQUIRE(obj->ttl == DEFAULT_TTL);
 	REQUIRE(obj->addrfamily == DEFAULT_AF);

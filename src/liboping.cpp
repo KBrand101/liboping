@@ -165,7 +165,7 @@ namespace oping
 	std::shared_ptr<pingobj> construct()
 	{
 		pingobj obj;
-		obj.qos		   = -1;
+		obj.qos		   = (uint8_t) -1;
 		obj.timeout	   = DEFAULT_TIMEOUT;
 		obj.ttl		   = DEFAULT_TTL;
 		obj.addrfamily = DEFAULT_AF;
@@ -190,16 +190,16 @@ namespace oping
 		switch (opt)
 		{
 			case QOS:
-				return internal::setQos(obj, value);
+				return internal::setQos(obj, (uint8_t) value);
 				break;
 			case TIMEOUT:
 				return internal::setTimeout(obj, value);
 				break;
 			case TTL:
-				return internal::setTTL(obj, value);
+				return internal::setTTL(obj, (int) value);
 				break;
 			case AF:
-				return internal::setAF(obj, value);
+				return internal::setAF(obj, (int) value);
 				break;
 			default:
 				internal::setErrorMsg(obj, "setOption", "Unknown option");

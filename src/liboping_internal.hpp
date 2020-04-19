@@ -20,10 +20,10 @@ namespace oping
 
 	struct pingobj
 	{
-		uint   qos;
-		double timeout;
-		int	   ttl;
-		int	   addrfamily;
+		uint8_t qos;
+		double	timeout;
+		int		ttl;
+		int		addrfamily;
 
 		int fd4;   // socket file descriptor for ipv4
 		int fd6;   // socket file descriptor for ipv6
